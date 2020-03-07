@@ -7,71 +7,97 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## About Laravel
+## Acerca de training notes con Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Training es una aplicación web que permite crear notas, agrupadas en notebooks, ha sido desarrollada para realizar pruebas con e-training. Para su instalación se requiere docker y docker-compose
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Pasos de instalación
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. Crear un directorio prueba y el archivo docker-compose:
+```
+mkdir prueba
+cd prueba
+touch docker-compose.yml
+```
+2. Dentro del archivo docker-compose.yml incluir las siguientes instrucciones:
 
-## Learning Laravel
+```
+version: '2'
+services:
+  mysql:
+    image: 'mysql:5.7'
+    container_name: endnote-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rooty123
+      MYSQL_USER: training
+      MYSQL_DATABASE: training
+      MYSQL_PASSWORD: tr123
+    ports:
+      - '3306:3306'
+    volumes:
+      - './mysql/:/var/lib/mysql'
+  myapp:
+    tty: true
+    container_name: endnote-laravel
+    image: 'bitnami/laravel:latest'
+    environment:
+      DB_HOST: mysql
+      DB_USERNAME: training
+      DB_DATABASE: training
+      DB_PASSWORD: tr123
+    depends_on:
+      - mysql
+    ports:
+      - 3000:3000
+    volumes:
+      - './php/:/app'
+    links:
+      - mysql
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+3. dentro de la carpeta creada ```prueba``` se debe clonar el repositorio, asi:
+```git clone https://github.com/uamoreno/training.git php/```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+4. Luego, sin moverse del directorio desde donde se lanzó git clone, se debe ejecutar el siguiente comando: 
+```sudo chmod -R 777 php/storage && sudo chmod -R 777 php/bootstrap/cache```
 
-## Laravel Sponsors
+6. Aun debe seguir en la carpeta ```prueba```, desde ese mismo punto ejecutar la instruccion:
+```
+docker-compose up
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+7. Luego de un tiempo se desplegaran dos contenedores de docker uno con MySQL y otro con Laravel, para conectarse al aplicativo se debe navegar a la url http://0.0.0.0:3000
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
 
-## Contributing
+## Instalación de docker y docker-compose
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Para instalar docker y docker-compose basta con ejecutar el gestor de instalacion, en el caso de ubuntu:
+```
+sudo apt-get install docker
+sudo apt-get install docker-compose
+```
 
-## Code of Conduct
+## Este repositorio clona el archivo .env
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Para facilitar la puesta en marcha de la prueba se ha permitido al descarga del archivo .env
 
-## Security Vulnerabilities
+## Usuarios de prueba
+```
+(Uriel Alejandro)
+Usuario: 80123
+Clave: secret
+```
+```
+(Luiz Perez)
+Usuario: 70321
+Clave: secret
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Apuntes
+
+Se ha empleado el OMR Elloquent, y se han empleado diferentes vistas de blade organizadas por módulo: notebooks, y notes, junto con algunas auxiliares para el login.
+
+Se ha empledo ajax para las opciones de borrar tanto notebooks como notes.
 
 ## License
 
