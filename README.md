@@ -78,7 +78,7 @@ docker-compose up
 
 ## Instalación de docker y docker-compose
 
-Para instalar docker se ha tomado como referencia el proceso indncaado en:
+Para instalar docker se ha tomado como referencia el proceso indicado en:
 
 https://www.digitalocean.com/community/tutorials/como-instalar-y-usar-docker-en-ubuntu-18-04-1-es
 
