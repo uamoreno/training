@@ -56,22 +56,30 @@ services:
 ```
 
 3. dentro de la carpeta creada ```prueba``` se debe clonar el repositorio, asi:
-```git clone https://github.com/uamoreno/training.git php/```
+
+```
+git clone https://github.com/uamoreno/training.git php/
+```
 
 4. Luego, sin moverse del directorio desde donde se lanzó git clone, se debe ejecutar el siguiente comando: 
-```sudo chmod -R 777 php/storage && sudo chmod -R 777 php/bootstrap/cache```
 
-6. Aun debe seguir en la carpeta ```prueba```, desde ese mismo punto ejecutar la instruccion:
+```
+sudo chmod -R 777 php/storage && sudo chmod -R 777 php/bootstrap/cache
+```
+
+6. Aun debe seguir en la carpeta ```prueba```, desde ese mismo punto ejecutar la instrucción:
 ```
 docker-compose up
 ```
 
-7. Luego de un tiempo se desplegaran dos contenedores de docker uno con MySQL y otro con Laravel, para conectarse al aplicativo se debe navegar a la url http://0.0.0.0:3000
+7. Luego de un tiempo se desplegarán dos contenedores de docker uno con MySQL y otro con Laravel y en la consola se mostrará el siguiente mensaje:
+
+> endnote-laravel | Laravel development server started: http://0.0.0.0:3000
 
 
 ## Instalación de docker y docker-compose
 
-Para instalar docker y docker-compose basta con ejecutar el gestor de instalacion, en el caso de ubuntu:
+Para instalar docker y docker-compose basta con ejecutar el gestor de instalación, en el caso de Ubuntu:
 ```
 sudo apt-get install docker
 sudo apt-get install docker-compose
