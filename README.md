@@ -7,9 +7,9 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## Acerca de training
+## Acerca de training notes con Laravel
 
-Trainig es una aplcación web que permite crear notas, agrupadas en notebooks, ha sido desarrollada para realizar pruebas con e-training. Para su instalación se requiere docker y docker-compose
+Training es una aplicación web que permite crear notas, agrupadas en notebooks, ha sido desarrollada para realizar pruebas con e-training. Para su instalación se requiere docker y docker-compose
 
 ## Pasos de instalación
 
