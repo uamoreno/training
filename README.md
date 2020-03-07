@@ -78,9 +78,13 @@ docker-compose up
 
 ## Instalación de docker y docker-compose
 
-Para instalar docker y docker-compose basta con ejecutar el gestor de instalación, en el caso de Ubuntu:
+Para instalar docker se ha tomado como referencia el proceso indncaado en:
+
+https://www.digitalocean.com/community/tutorials/como-instalar-y-usar-docker-en-ubuntu-18-04-1-es
+
+Para instalar docker-compose basta con ejecutar el gestor de instalación, en el caso de Ubuntu:
+
 ```
-sudo apt-get install docker
 sudo apt-get install docker-compose
 ```
 
